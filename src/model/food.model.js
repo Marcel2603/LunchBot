@@ -1,9 +1,7 @@
-module.exports = (sequelize, DataTypes, Model) => {
+const {DataTypes} = require('sequelize');
 
-    class Food extends Model {}
-
-    Food.init({
-        // Model attributes are defined here
+module.exports = (sequelize) => {
+    sequelize.define('food', {// Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -16,9 +14,5 @@ module.exports = (sequelize, DataTypes, Model) => {
         },
     }, {
         timestamps: false,
-        sequelize,
-        modelName: 'food'
     });
-
-    return Food;
 }

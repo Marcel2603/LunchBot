@@ -1,39 +1,14 @@
-const { Sequelize, Model, DataTypes } = require("sequelize");
-const LOGGER = require('../configuration/logger')
-const connect = () => {
+const {Sequelize, Model, DataTypes} = require("sequelize");
 
-    const hostName = "localhost";
-    const userName = "lunch";
-    const password = "bot";
-    const database = "lunchbot";
-    const dialect = "postgres";
+const sequelize = new Sequelize("lunchbot","lunch","bot",{
+    host: "localhost",dialect: 'postgres', logging: false, benchmark: true
+});
 
-    LOGGER.info(`${hostName} ${password}`)
+const modelDefiners = [require("../model/food.model"), require("../model/vote.model")]
 
-    const sequelize = new Sequelize(database, userName, password, {
-        host: hostName,
-        dialect: dialect,
-        logging: false,
-        sync: {
-            alter: true
-        },
-        pool: {
-            max: 10,
-            min: 0,
-            acquire: 20000,
-            idle: 5000
-        }
-    });
 
-    const db = {};
-    db.Sequelize = Sequelize;
-    db.sequelize = sequelize;
-    db.food = require("../model/food.model")(sequelize, DataTypes, Model);
-    db.vote = require("../model/vote.model")(sequelize, DataTypes, Model);
-
-    return db;
+for (const modelDefiner of modelDefiners) {
+    modelDefiner(sequelize);
 }
 
-module.exports = {
-    connect
-}
+module.exports = sequelize

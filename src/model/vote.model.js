@@ -1,9 +1,8 @@
-module.exports = (sequelize, DataTypes, Model) => {
+const {DataTypes} = require('sequelize');
 
-    class Vote extends Model {
-    }
+module.exports = (sequelize) => {
 
-    Vote.init({
+    sequelize.define('vote', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -24,9 +23,5 @@ module.exports = (sequelize, DataTypes, Model) => {
         },
     }, {
         timestamps: false,
-        sequelize, // We need to pass the connection instance
-        modelName: 'vote' // We need to choose the model name
     });
-
-    return Vote;
 }
