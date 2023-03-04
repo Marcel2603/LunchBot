@@ -6,6 +6,7 @@ const finishVoting = "20/2 * * * *"
 exports.init = () => {
     schedule.scheduleJob(startVoting, function () {
         /*
+        * clear db
         * Init lunch-votes
         * Create Card
         * Post Message

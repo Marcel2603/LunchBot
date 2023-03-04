@@ -1,12 +1,12 @@
 const logger = require('../configuration/logger');
-const model = require('../configuration/db.config')
+const sequelize = require('../configuration/sequelize.config')
 
 
 class FootRepository {
 
     async getFoods() {
         try {
-            const foods = await model.models.food.findAll();
+            const foods = await sequelize.models.food.findAll();
             logger.info('foods:::', foods);
             return foods;
         } catch (err) {

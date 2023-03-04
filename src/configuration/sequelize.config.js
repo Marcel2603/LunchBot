@@ -1,4 +1,4 @@
-const {Sequelize, Model, DataTypes} = require("sequelize");
+const {Sequelize} = require("sequelize");
 
 const sequelize = new Sequelize("lunchbot","lunch","bot",{
     host: "localhost",dialect: 'postgres', logging: false, benchmark: true

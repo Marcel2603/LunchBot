@@ -1,7 +1,7 @@
 const express = require("express");
 const lunchScheduler = require("./src/scheduler/lunchScheduler")
 const testRouter = require("./src/routes/test")
-const sequelize = require("./src/configuration/db.config")
+const sequelize = require("./src/configuration/sequelize.config")
 
 const port = 3000;
 
