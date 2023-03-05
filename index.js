@@ -1,7 +1,8 @@
 const express = require("express");
-const lunchScheduler = require("./src/scheduler/lunchScheduler")
-const testRouter = require("./src/routes/test")
-const sequelize = require("./src/configuration/sequelize.config")
+const lunchScheduler = require("./src/scheduler/lunch.scheduler")
+const testRouter = require("./src/router/test.router")
+const botRouter = require("./src/router/bot.router")
+const sequelize = require("./src/configuration/sequelize.configuration")
 
 const port = 3000;
 
@@ -32,6 +33,7 @@ async function init() {
         })
     );
     app.use("/test", testRouter);
+    app.use("/api/messages", botRouter);
 
     lunchScheduler.init()
 

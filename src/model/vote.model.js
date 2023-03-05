@@ -3,7 +3,6 @@ const {DataTypes} = require('sequelize');
 module.exports = (sequelize) => {
 
     sequelize.define('vote', {
-        // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,

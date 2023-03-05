@@ -1,13 +1,11 @@
 const logger = require('../configuration/logger');
-const sequelize = require('../configuration/sequelize.config')
+const sequelize = require('../configuration/sequelize.configuration')
 
 class VoteRepository {
 
     async getVotes() {
         try {
-            const votes = await sequelize.models.vote.findAll();
-            logger.info('votes:::', votes);
-            return votes;
+            return await sequelize.models.vote.findAll();
         } catch (err) {
             logger.error(err);
             return [];
@@ -16,9 +14,7 @@ class VoteRepository {
 
     async createVote(inputVote) {
         try {
-            console.log(inputVote)
-            const vote = await sequelize.models.vote.create(inputVote)
-            return vote
+            return await sequelize.models.vote.findOrCreate({where: inputVote})
         } catch (err) {
             logger.error(err)
             return null
