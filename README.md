@@ -15,6 +15,7 @@
 - [ ] Add bot logic
   - [x] Create Bot
   - [x] Create Card
-  - [ ] Update Card
-  - [ ] Push Card
+  - [x] Update Card
+  - [ ] Create Conversation
+  - [ ] Update Conversation
     - https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
