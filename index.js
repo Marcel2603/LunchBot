@@ -5,6 +5,7 @@ const botRouter = require("./src/router/bot.router")
 const sequelize = require("./src/configuration/sequelize.configuration")
 
 const port = 3000;
+const hostname = "0.0.0.0"
 
 async function assertDatabaseConnectionOk() {
     console.log(`Checking database connection...`);
@@ -37,8 +38,9 @@ async function init() {
 
     lunchScheduler.init()
 
-    app.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`);
+    app.listen(
+        port, hostname, () => {
+        console.log(`Example app listening at http://${hostname}:${port}`);
     });
 }
 
