@@ -1,10 +1,14 @@
-const express = require("express");
-const lunchScheduler = require("./src/scheduler/lunch.scheduler")
-const testRouter = require("./src/router/test.router")
-const botRouter = require("./src/router/bot.router")
-const sequelize = require("./src/configuration/sequelize.configuration")
-var expressWinston = require('express-winston');
-var winston = require('winston'); // for transport
+import winston from "winston";
+import express from "express"
+import expressWinston from "express-winston"
+import {sequelize} from "./configuration/sequelize.configuration";
+import initSchedulers from "./scheduler/lunch.scheduler"
+import {testRouter} from "./router/test.router";
+import {botRouter} from "./router/bot.router";
+
+
+
+
 const port = 3000;
 const hostname = "0.0.0.0"
 
@@ -16,7 +20,7 @@ async function assertDatabaseConnectionOk() {
         console.log('Database connection OK!');
     } catch (error) {
         console.log('Unable to connect to the database:');
-        console.log(error.message);
+        console.log(error);
         process.exit(1);
     }
 
@@ -43,10 +47,11 @@ async function init() {
             winston.format.json()
         )
     }));
+    console.log()
     app.use("/test", testRouter);
     app.use("/api/messages", botRouter);
 
-    lunchScheduler.init()
+    initSchedulers()
 
     app.listen(
         port, hostname, () => {

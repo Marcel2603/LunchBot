@@ -1,6 +1,7 @@
-const {DataTypes} = require('sequelize');
+import {DataTypes} from "sequelize";
 
-module.exports = (sequelize) => {
+
+export default function voteModel(sequelize) {
 
     sequelize.define('vote', {
         id: {

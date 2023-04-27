@@ -1,20 +1,20 @@
-const {Sequelize} = require("sequelize");
+import {Sequelize} from "sequelize";
+import foodModel from "../model/food.model";
+import voteModel from "../model/vote.model";
 
-const sequelize = new Sequelize(
+
+export const sequelize = new Sequelize(
     process.env["DB_TABLE"] || "lunchbot",
     process.env["DB_USER"] || "lunch",
     process.env["DB_PASSWORD"] || "bot", {
         host: process.env["DB_HOST"] || "localhost",
-        dialect: process.env["DB_DIALECT"] || 'postgres',
+        dialect: 'postgres',
         logging: false,
         benchmark: true
     });
 
-const modelDefiners = [require("../model/food.model"), require("../model/vote.model")]
-
+const modelDefiners = [foodModel, voteModel]
 
 for (const modelDefiner of modelDefiners) {
     modelDefiner(sequelize);
 }
-
-module.exports = sequelize

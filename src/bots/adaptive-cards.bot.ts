@@ -1,19 +1,19 @@
-const {TeamsActivityHandler, MessageFactory} = require('botbuilder');
-const cardHelper = require("./card.helper");
-const lunchService = require("../service/lunch.service")
-const logger = require("../configuration/logger")
-class AdaptiveCardsBot extends TeamsActivityHandler {
+import {MessageFactory, TeamsActivityHandler} from "botbuilder";
+import CardHelper from "./card.helper";
+import LunchService from "../service/lunch.service";
+
+export default class AdaptiveCardsBot extends TeamsActivityHandler {
     constructor() {
         super();
 
         this.onMessage(async (context, next) => {
-            logger.error("Hanlde some request")
+            console.error("Handle some request")
             const activity = context.activity;
             if (activity.value) {
                 await this.updateVotes(activity.from.name, activity.value)
             }
 
-            const card = await cardHelper.createCard();
+            const card = await CardHelper.createCard();
             if (!activity.replyToId) {
                 await context.sendActivity(MessageFactory.attachment(card));
             } else {
@@ -28,13 +28,11 @@ class AdaptiveCardsBot extends TeamsActivityHandler {
 
     async updateVotes(username, values) {
         if (values.newFood) {
-            await lunchService.createAndVoteFood(username, values.newFood)
+            await LunchService.createAndVoteFood(username, values.newFood)
         }
         const votes = Object.entries(values)
             .filter(entry => Number.isInteger(Number(entry[0])) && entry[1] === 'true')
             .map(entry => Number(entry[0]))
-        await lunchService.voteLunch(username, votes)
+        await LunchService.voteLunch(username, votes)
     }
 }
-
-module.exports.AdaptiveCardsBot = AdaptiveCardsBot;

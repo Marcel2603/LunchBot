@@ -1,5 +1,4 @@
-const lunchService = require('./lunch.service')
-const foodRepo = require('../repository/food.repository')
+
 
 describe('testing lunchservice', function () {
     it('should test', function () {

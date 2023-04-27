@@ -1,17 +1,15 @@
 // Import required bots services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bots.
-const {
-    CloudAdapter,
-    ConfigurationBotFrameworkAuthentication
-} = require('botbuilder');
 
-const {AdaptiveCardsBot} = require('../bots/adaptive-cards.bot');
+
+import {CloudAdapter, ConfigurationBotFrameworkAuthentication} from "botbuilder";
+import AdaptiveCardsBot from "../bots/adaptive-cards.bot";
 
 const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication({
 });
 
 // Create adapter. See https://aka.ms/about-bot-adapter to learn more about adapters.
-const adapter = new CloudAdapter(botFrameworkAuthentication);
+export const adapter = new CloudAdapter(botFrameworkAuthentication);
 
 // Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
@@ -35,9 +33,4 @@ adapter.onTurnError = async (context, error) => {
 };
 
 // Create the AdaptiveCardsBot.
-const bot = new AdaptiveCardsBot();
-
-module.exports = {
-    bot: bot,
-    adapter: adapter
-}
+export const bot = new AdaptiveCardsBot();

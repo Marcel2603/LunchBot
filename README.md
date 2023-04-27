@@ -2,7 +2,9 @@
 
 ## Todos
 
-- [ ] Load Config from env
+- [x] Load Config from env
+- [ ] make tsconfig stricter, add formatter
+- [ ] define models in a awy better suited to typescript
 - [x] Add logic create food
     - vote after creation
     - check that food does not exists, else vote
@@ -25,5 +27,14 @@ https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
 
 ## Running the app
 
+You need a test account to use the bot in teams. See below on how to create one.
+
 - for viewing: `docker-compose up`
 - for developing `docker-compose run lunchbot yarn && yarn dev`
+
+## Creating a bot in Teams
+
+1. Install the "Developer Portal" app for your account in Teams
+2. Create a new bot in the "Tools" tab
+3. Create a new app in the "Apps" tab
+4. Under "App features" add a bot to the app, select your previously created bot
