@@ -1,12 +1,13 @@
 const {TeamsActivityHandler, MessageFactory} = require('botbuilder');
 const cardHelper = require("./card.helper");
 const lunchService = require("../service/lunch.service")
-
+const logger = require("../configuration/logger")
 class AdaptiveCardsBot extends TeamsActivityHandler {
     constructor() {
         super();
 
         this.onMessage(async (context, next) => {
+            logger.error("Hanlde some request")
             const activity = context.activity;
             if (activity.value) {
                 await this.updateVotes(activity.from.name, activity.value)

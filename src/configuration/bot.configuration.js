@@ -7,7 +7,8 @@ const {
 
 const {AdaptiveCardsBot} = require('../bots/adaptive-cards.bot');
 
-const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication({});
+const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication({
+});
 
 // Create adapter. See https://aka.ms/about-bot-adapter to learn more about adapters.
 const adapter = new CloudAdapter(botFrameworkAuthentication);
