@@ -2,6 +2,8 @@ version: '3.9'
 services:
   lunchbot:
     image: node:18
+    depends_on:
+      - postgres
     volumes:
       - .:/code
     working_dir: /code

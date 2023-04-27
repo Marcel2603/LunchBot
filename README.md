@@ -19,3 +19,8 @@
   - [ ] Create Conversation
   - [ ] Update Conversation
     - https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
+
+## Running the app
+
+- for viewing: `docker-compose up`
+- for developing `docker-compose run lunchbot yarn && yarn dev`
