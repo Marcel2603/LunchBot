@@ -18,7 +18,10 @@
   - [x] Update Card
   - [ ] Create Conversation
   - [ ] Update Conversation
-    - https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
+- [ ] typedi einbauen
+
+## Links
+https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
 
 ## Running the app
 
