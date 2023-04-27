@@ -3,7 +3,8 @@ const lunchScheduler = require("./src/scheduler/lunch.scheduler")
 const testRouter = require("./src/router/test.router")
 const botRouter = require("./src/router/bot.router")
 const sequelize = require("./src/configuration/sequelize.configuration")
-
+var expressWinston = require('express-winston');
+var winston = require('winston'); // for transport
 const port = 3000;
 const hostname = "0.0.0.0"
 
@@ -33,6 +34,15 @@ async function init() {
             extended: true,
         })
     );
+    app.use(expressWinston.logger({
+        transports: [
+            new winston.transports.Console()
+        ],
+        format: winston.format.combine(
+            winston.format.colorize(),
+            winston.format.json()
+        )
+    }));
     app.use("/test", testRouter);
     app.use("/api/messages", botRouter);
 
@@ -40,8 +50,8 @@ async function init() {
 
     app.listen(
         port, hostname, () => {
-        console.log(`Example app listening at http://${hostname}:${port}`);
-    });
+            console.log(`Example app listening at http://${hostname}:${port}`);
+        });
 }
 
 init()
