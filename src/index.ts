@@ -49,7 +49,7 @@ async function init() {
     }));
     console.log()
     app.use("/test", testRouter);
-    app.use("/api/messages", botRouter);
+    app.use("/api/v1/messages", botRouter);
 
     initSchedulers()
 
