@@ -20,6 +20,10 @@ class LunchService {
         return await foodRepo.getFoods()
     }
 
+    async addFood(foodName) {
+        return await foodRepo.createFood({name: foodName})
+    }
+
     async getVotes() {
         let votes = await voteRepo.getVotes();
         let result = new Map()
