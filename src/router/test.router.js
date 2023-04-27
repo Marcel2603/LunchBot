@@ -8,10 +8,10 @@ router.get('/vote', async function (req, res) {
 })
 
 router.post('/vote', async function (req, res) {
-    const user = req.query.user
-    const food = req.query.food
-    await lunchService.voteLunch(user, [food])
-    res.json({user: user, food: food});
+    const user = req.query['user']
+    const foodId = req.query['foodId']
+    await lunchService.voteLunch(user, [foodId])
+    res.json({user: user, food: foodId});
 })
 
 router.get('/food', async (req, res) => {
