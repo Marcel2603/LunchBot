@@ -5,8 +5,7 @@ import {sequelize} from "../configuration/sequelize.configuration";
 export default class Vote extends Model {
     declare id: number
     declare username: string
-    // TODO: switch this to camel case
-    declare food_id: number
+    declare foodId: number
 }
 
 Vote.init({
@@ -19,7 +18,7 @@ Vote.init({
             type: DataTypes.STRING,
             allowNull: false
         },
-        food_id: {
+        foodId: {
             references: {
                 model: "food",
                 key: "id"

@@ -16,9 +16,9 @@ export default class VoteRepository {
     static async createVote(inputVote) {
         const [vote, created] = await Vote.findOrCreate({where: inputVote})
         if (created) {
-            logger.debug(`database: saved vote of user ${vote.username} (food id: ${vote.food_id}, vote id: ${vote.id})`)
+            logger.debug(`database: saved vote of user ${vote.username} (food id: ${vote.foodId}, vote id: ${vote.id})`)
         } else {
-            logger.debug(`database: tried to save existing vote of user ${vote.username} (food id: ${vote.food_id}, vote id: ${vote.id})`)
+            logger.debug(`database: tried to save existing vote of user ${vote.username} (food id: ${vote.foodId}, vote id: ${vote.id})`)
         }
         return vote
     }
