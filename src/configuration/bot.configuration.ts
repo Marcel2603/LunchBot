@@ -1,12 +1,15 @@
 // Import required bots services.
 // See https://aka.ms/bot-services to learn more about the different parts of a bots.
 
-
-import {CloudAdapter, ConfigurationBotFrameworkAuthentication} from "botbuilder";
+import {
+    CloudAdapter,
+    ConfigurationBotFrameworkAuthentication,
+} from "botbuilder";
 import AdaptiveCardsBot from "../bots/adaptive-cards.bot";
 
-const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication({
-});
+const botFrameworkAuthentication = new ConfigurationBotFrameworkAuthentication(
+    {}
+);
 
 // Create adapter. See https://aka.ms/about-bot-adapter to learn more about adapters.
 export const adapter = new CloudAdapter(botFrameworkAuthentication);
@@ -21,15 +24,17 @@ adapter.onTurnError = async (context, error) => {
 
     // Send a trace activity, which will be displayed in Bot Framework Emulator
     await context.sendTraceActivity(
-        'OnTurnError Trace',
+        "OnTurnError Trace",
         `${error}`,
-        'https://www.botframework.com/schemas/error',
-        'TurnError'
+        "https://www.botframework.com/schemas/error",
+        "TurnError"
     );
 
     // Send a message to the user
-    await context.sendActivity('The bots encountered an error or bug.');
-    await context.sendActivity('To continue to run this bots, please fix the bots source code.');
+    await context.sendActivity("The bots encountered an error or bug.");
+    await context.sendActivity(
+        "To continue to run this bots, please fix the bots source code."
+    );
 };
 
 // Create the AdaptiveCardsBot.

@@ -1,32 +1,33 @@
-import {DataTypes, Model} from "sequelize";
-import {sequelize} from "../configuration/sequelize.configuration";
-
+import { DataTypes, Model } from "sequelize";
+import { sequelize } from "../configuration/sequelize.configuration";
 
 export default class Vote extends Model {
-    declare id: number
-    declare username: string
-    declare foodId: number
+    declare id: number;
+    declare username: string;
+    declare foodId: number;
 }
 
-Vote.init({
+Vote.init(
+    {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
         },
         foodId: {
             references: {
                 model: "food",
-                key: "id"
+                key: "id",
             },
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
         },
-    },{
+    },
+    {
         sequelize,
         timestamps: false,
     }

@@ -1,4 +1,4 @@
-import {MessageFactory, TeamsActivityHandler} from "botbuilder";
+import { MessageFactory, TeamsActivityHandler } from "botbuilder";
 import CardHelper from "./card.helper";
 import LunchService from "../service/lunch.service";
 
@@ -7,10 +7,10 @@ export default class AdaptiveCardsBot extends TeamsActivityHandler {
         super();
 
         this.onMessage(async (context, next) => {
-            console.error("Handle some request")
+            console.error("Handle some request");
             const activity = context.activity;
             if (activity.value) {
-                await this.updateVotes(activity.from.name, activity.value)
+                await this.updateVotes(activity.from.name, activity.value);
             }
 
             const card = await CardHelper.createCard();
@@ -19,7 +19,7 @@ export default class AdaptiveCardsBot extends TeamsActivityHandler {
             } else {
                 const message = MessageFactory.attachment(card);
                 message.id = activity.replyToId;
-                message.conversation = activity.conversation
+                message.conversation = activity.conversation;
                 await context.updateActivity(message);
             }
             await next();
@@ -28,11 +28,14 @@ export default class AdaptiveCardsBot extends TeamsActivityHandler {
 
     async updateVotes(username, values) {
         if (values.newFood) {
-            await LunchService.createAndVoteFood(username, values.newFood)
+            await LunchService.createAndVoteFood(username, values.newFood);
         }
         const votes = Object.entries(values)
-            .filter(entry => Number.isInteger(Number(entry[0])) && entry[1] === 'true')
-            .map(entry => Number(entry[0]))
-        await LunchService.voteLunch(username, votes)
+            .filter(
+                (entry) =>
+                    Number.isInteger(Number(entry[0])) && entry[1] === "true"
+            )
+            .map((entry) => Number(entry[0]));
+        await LunchService.voteLunch(username, votes);
     }
 }
