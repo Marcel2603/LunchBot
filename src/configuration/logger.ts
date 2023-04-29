@@ -1,17 +1,18 @@
+import {createLogger, format, transports} from "winston";
 
 
-const logger = pine();
+export const loggingTimestampFormat = format.timestamp({
+    format: 'YYYY-MM-DD HH:mm:ss'
+})
 
 
-class Logger {
-
-    info(message, data) {
-        logger.info(`${message}   ${undefined !== data ? JSON.stringify(data) : ''}`);
-    }
-
-    error(message) {
-        logger.error(message);
-    }
-}
-
-module.exports = new Logger();
+export const logger = createLogger({
+    level: 'debug',
+    format: format.combine(
+        loggingTimestampFormat,
+        format.errors({stack: true}),
+        format.splat(),
+        format.json()
+    ),
+    transports: [new transports.Console()]
+});

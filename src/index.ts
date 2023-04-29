@@ -1,10 +1,11 @@
-import winston from "winston";
+import winston, {format} from "winston";
 import express from "express"
 import expressWinston from "express-winston"
 import {sequelize} from "./configuration/sequelize.configuration";
 import initSchedulers from "./scheduler/lunch.scheduler"
 import {testRouter} from "./router/test.router";
 import {botRouter} from "./router/bot.router";
+import {loggingTimestampFormat} from "./configuration/logger";
 
 
 
@@ -43,11 +44,10 @@ async function init() {
             new winston.transports.Console()
         ],
         format: winston.format.combine(
-            winston.format.colorize(),
+            loggingTimestampFormat,
             winston.format.json()
         )
     }));
-    console.log()
     app.use("/test", testRouter);
     app.use("/api/v1/messages", botRouter);
 
