@@ -5,15 +5,15 @@ export default class LunchService {
     constructor() {
     }
 
-    static async voteLunch(username, foodsId) {
-        for (const id of foodsId) {
-            await VoteRepository.createVote({username: username, food_id: id})
+    static async voteLunch(username, foodIdList) {
+        for (const foodId of foodIdList) {
+            await VoteRepository.createVote( username, foodId)
         }
     }
 
     static async createAndVoteFood(username, foodName) {
-        const food = await FoodRepository.createFood({name: foodName})
-        await LunchService.voteLunch(username, [food["id"]])
+        const food = await FoodRepository.createFood(foodName)
+        await LunchService.voteLunch(username, [food.id])
     }
 
     static async getFoods() {
@@ -21,7 +21,7 @@ export default class LunchService {
     }
 
     static async addFood(foodName) {
-        return await FoodRepository.createFood({name: foodName})
+        return await FoodRepository.createFood(foodName)
     }
 
     static async getVotes() {

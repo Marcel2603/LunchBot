@@ -12,8 +12,8 @@ export default class FoodRepository {
         }
     }
 
-    static async createFood(inputFood) {
-        const [food, created] = await Food.findOrCreate({where: inputFood})
+    static async createFood(foodName: string) {
+        const [food, created] = await Food.findOrCreate({where: {name: foodName}})
         if (created) {
             logger.debug(`database: added food "${food.name}" with id ${food.id}`)
         } else {
