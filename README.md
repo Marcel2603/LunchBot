@@ -3,7 +3,9 @@
 ## Todos
 
 - [x] Load Config from env
-- [ ] make tsconfig stricter, add formatter
+- [x] add formatter, automatically format on commits
+- [ ] add linter
+- [ ] make tsconfig stricter
 - [x] define models in a awy better suited to typescript
 - [x] use only one logger library
 - [x] Add logic create food
