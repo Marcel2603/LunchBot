@@ -1,9 +1,15 @@
-import {DataTypes} from "sequelize";
+import {DataTypes, Model} from "sequelize";
+import {sequelize} from "../configuration/sequelize.configuration";
 
 
-export default function voteModel(sequelize) {
+export default class Vote extends Model {
+    declare id: number
+    declare username: string
+    // TODO: switch this to camel case
+    declare food_id: number
+}
 
-    sequelize.define('vote', {
+Vote.init({
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -21,7 +27,8 @@ export default function voteModel(sequelize) {
             type: DataTypes.INTEGER,
             allowNull: false
         },
-    }, {
+    },{
+        sequelize,
         timestamps: false,
-    });
-}
+    }
+);

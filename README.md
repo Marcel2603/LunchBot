@@ -5,6 +5,7 @@
 - [x] Load Config from env
 - [ ] make tsconfig stricter, add formatter
 - [ ] define models in a awy better suited to typescript
+- [ ] use only one logger library
 - [x] Add logic create food
     - vote after creation
     - check that food does not exists, else vote

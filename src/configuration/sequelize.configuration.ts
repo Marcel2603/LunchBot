@@ -1,6 +1,4 @@
 import {Sequelize} from "sequelize";
-import foodModel from "../model/food.model";
-import voteModel from "../model/vote.model";
 
 
 export const sequelize = new Sequelize(
@@ -11,10 +9,5 @@ export const sequelize = new Sequelize(
         dialect: 'postgres',
         logging: false,
         benchmark: true
-    });
-
-const modelDefiners = [foodModel, voteModel]
-
-for (const modelDefiner of modelDefiners) {
-    modelDefiner(sequelize);
-}
+    }
+)

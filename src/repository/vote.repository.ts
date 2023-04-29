@@ -1,11 +1,12 @@
-import {sequelize} from "../configuration/sequelize.configuration";
+import Vote from "../model/vote.model";
+import {logger} from "../configuration/logger";
 
 
 export default class VoteRepository {
 
     static async getVotes() {
         try {
-            return await sequelize.models.vote.findAll();
+            return await Vote.findAll();
         } catch (err) {
             console.error(err);
             return [];
@@ -13,11 +14,12 @@ export default class VoteRepository {
     }
 
     static async createVote(inputVote) {
-        try {
-            return await sequelize.models.vote.findOrCreate({where: inputVote})
-        } catch (err) {
-            console.error(err)
-            return null
+        const [vote, created] = await Vote.findOrCreate({where: inputVote})
+        if (created) {
+            logger.debug(`database: saved vote of user ${vote.username} (food id: ${vote.food_id}, vote id: ${vote.id})`)
+        } else {
+            logger.debug(`database: tried to save existing vote of user ${vote.username} (food id: ${vote.food_id}, vote id: ${vote.id})`)
         }
+        return vote
     }
 }

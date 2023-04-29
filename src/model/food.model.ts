@@ -1,8 +1,13 @@
-import {DataTypes} from "sequelize";
+import {DataTypes, Model} from "sequelize";
+import {sequelize} from "../configuration/sequelize.configuration";
 
 
-export default function foodModel(sequelize) {
-    sequelize.define('food', {
+export default class Food extends Model {
+    declare id: number
+    declare name: string
+}
+
+Food.init({
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -14,6 +19,7 @@ export default function foodModel(sequelize) {
             allowNull: false
         },
     }, {
+        sequelize,
         timestamps: false,
-    });
-}
+    }
+);
