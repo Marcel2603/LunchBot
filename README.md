@@ -4,8 +4,8 @@
 
 - [x] Load Config from env
 - [ ] make tsconfig stricter, add formatter
-- [ ] define models in a awy better suited to typescript
-- [ ] use only one logger library
+- [x] define models in a awy better suited to typescript
+- [x] use only one logger library
 - [x] Add logic create food
     - vote after creation
     - check that food does not exists, else vote
@@ -25,6 +25,10 @@
 
 ## Links
 https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
+
+## Developing the app
+
+This project used prettier for code formatting. It is recommended to install the prettier extension for you IDE.
 
 ## Running the app
 

@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "dev": "nodemon src/index.ts",
@@ -31,6 +33,7 @@
     "@types/sequelize": "^4.28.14",
     "@types/winston": "^2.4.4",
     "jest": "^29.4.3",
-    "nodemon": "^2.0.21"
+    "nodemon": "^2.0.21",
+    "prettier": "^2.8.8"
   }
 }
