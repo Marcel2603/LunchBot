@@ -19,7 +19,7 @@ const DEFAULT_BODY = [
 
 export default class CardHelper {
     static async createCard() {
-        let food = (await LunchService.getFoods()).map((item) => {
+        const food = (await LunchService.getFoods()).map((item) => {
             return {
                 id: item["id"].toString(),
                 title: `${item["name"]}`,

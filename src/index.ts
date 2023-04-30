@@ -1,4 +1,4 @@
-import winston, { format } from "winston";
+import winston from "winston";
 import express from "express";
 import expressWinston from "express-winston";
 import { sequelize } from "./configuration/sequelize.configuration";

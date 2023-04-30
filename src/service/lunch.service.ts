@@ -2,8 +2,6 @@ import FoodRepository from "../repository/food.repository";
 import VoteRepository from "../repository/vote.repository";
 
 export default class LunchService {
-    constructor() {}
-
     static async voteLunch(username, foodIdList) {
         for (const foodId of foodIdList) {
             await VoteRepository.createVote(username, foodId);
@@ -24,8 +22,8 @@ export default class LunchService {
     }
 
     static async getVotes() {
-        let votes = await VoteRepository.getVotes();
-        let result = new Map();
+        const votes = await VoteRepository.getVotes();
+        const result = new Map();
         votes.forEach((vote) => {
             let lunch = [vote["username"]];
             if (result.has(vote["food_id"])) {
