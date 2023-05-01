@@ -1,0 +1,6 @@
+database:
+    host: "${DB_HOST}"
+schedule:
+    voting:
+        begin: "10/1 * * * *"
+        end: "20/2 * * * *"

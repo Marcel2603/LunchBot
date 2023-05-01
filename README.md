@@ -34,6 +34,12 @@ https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
 This project used prettier for code formatting. It is recommended to install the prettier extension for you IDE and
 enable the "on 'reformat code' action" option in the settings.
 
+## Configuring the app
+
+[//]: # "TODO: expand this"
+
+The config file is expected to be called "configuration.yml" and lie in the root of the repo.
+
 ## Running the app
 
 You need a test account to use the bot in teams. See below on how to create one.
