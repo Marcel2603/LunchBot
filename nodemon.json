@@ -1,6 +1,6 @@
 {
     "events": {
-        "start": "yarn lint",
-        "restart": "yarn lint"
-    }
+        "start": "yarn format --list-different && yarn lint"
+    },
+    "delay": 200
 }
