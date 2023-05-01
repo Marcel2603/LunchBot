@@ -31,7 +31,8 @@ https://dev.to/azure/beginners-guide-to-ms-teams-development-2-bots-590m
 
 ## Developing the app
 
-This project used prettier for code formatting. It is recommended to install the prettier extension for you IDE.
+This project used prettier for code formatting. It is recommended to install the prettier extension for you IDE and
+enable the "on 'reformat code' action" option in the settings.
 
 ## Running the app
 
