@@ -16,5 +16,33 @@ module.exports = {
     },
     plugins: ["@typescript-eslint"],
     ignorePatterns: [],
-    rules: {},
+    rules: {
+        camelcase: "off",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                selector: "default",
+                format: ["camelCase"],
+            },
+            {
+                selector: "variable",
+                format: ["camelCase", "UPPER_CASE"],
+            },
+            {
+                selector: "parameter",
+                format: ["camelCase"],
+                leadingUnderscore: "allow",
+            },
+            {
+                selector: "memberLike",
+                modifiers: ["private"],
+                format: ["camelCase"],
+                leadingUnderscore: "require",
+            },
+            {
+                selector: "typeLike",
+                format: ["PascalCase"],
+            },
+        ],
+    },
 };
