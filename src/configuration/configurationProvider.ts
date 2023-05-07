@@ -21,7 +21,7 @@ export default class Configuration {
             config: configStr,
         });
         configStr = configStr.replace(
-            /\$\{([\w_-]+)\}/,
+            /\$\{([\w_-]+)}/,
             (substring, varName) => {
                 const varContent = process.env[varName];
                 if (varContent === undefined) {
