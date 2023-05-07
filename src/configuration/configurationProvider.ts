@@ -8,11 +8,7 @@ export default class Configuration {
     private static _instance: Configuration | null = null;
     private _config;
 
-    private constructor(config) {
-        this._config = config;
-    }
-
-    static init(configPath?: string) {
+    private constructor(configPath?: string) {
         let configStr = fs.readFileSync(
             configPath ?? path.join(process.cwd(), "configuration.yml"),
             "utf8"
@@ -21,7 +17,7 @@ export default class Configuration {
             config: configStr,
         });
         configStr = configStr.replace(
-            /\$\{([\w_-]+)}/,
+            /\$\{([\w_-]+)}/g,
             (substring, varName) => {
                 const varContent = process.env[varName];
                 if (varContent === undefined) {
@@ -33,21 +29,26 @@ export default class Configuration {
             }
         );
 
-        const config = yaml.load(configStr);
-        this._instance = new Configuration(config);
+        this._config = yaml.load(configStr);
 
         // we don't want to print the parsed config to not leak any secrets in it
         logger.info(
             "the config file has been processed, the configuration is now available"
         );
+
+        console.log(this._config);
     }
 
     static getInstance() {
-        if (Configuration._instance instanceof Configuration)
-            return Configuration._instance;
-
-        throw new Error(
-            "The configuration instance has not yet been instantiated. This is required to be able to use it."
-        );
+        return Configuration._instance ?? new Configuration();
     }
+
+    static getConfig() {
+        return Configuration.getInstance()._config;
+    }
+}
+
+// this serves as a shorthand method to get the configuration object
+export function config() {
+    return Configuration.getConfig();
 }
