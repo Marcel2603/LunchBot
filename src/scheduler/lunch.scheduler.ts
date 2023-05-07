@@ -1,24 +1,23 @@
 import { scheduleJob } from "node-schedule";
+import { config } from "../configuration/configurationProvider";
 
-const startVoting = "10/1 * * * *";
-const finishVoting = "20/2 * * * *";
-// const disable = "-"
+const startVoting = config()["schedule"]["voting"]["begin"];
+const finishVoting = config()["schedule"]["voting"]["end"];
+
 export default function () {
     scheduleJob(startVoting, function () {
-        /*
-         * clear db
-         * Init lunch-votes
-         * Create Card
-         * Post Message
-         */
+        // TODO:
+        //  clear db
+        //  Init lunch-votes
+        //  Create Card
+        //  Post Message
         console.log("Start Voting!");
     });
     scheduleJob(finishVoting, function () {
-        /*
-         * Calculate Votes
-         * Create Result
-         * Post Message
-         */
+        // TODO:
+        //  Calculate Votes
+        //  Create Result
+        //  Post Message
         console.log("Finish Voting!");
     });
 }
