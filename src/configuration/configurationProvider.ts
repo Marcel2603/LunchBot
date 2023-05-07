@@ -35,8 +35,6 @@ export default class Configuration {
         logger.info(
             "the config file has been processed, the configuration is now available"
         );
-
-        console.log(this._config);
     }
 
     static getInstance() {
