@@ -6,7 +6,6 @@ import initSchedulers from "./scheduler/lunch.scheduler";
 import { testRouter } from "./router/test.router";
 import { botRouter } from "./router/bot.router";
 import { loggingTimestampFormat } from "./configuration/logger";
-import Configuration from "./configuration/configurationProvider";
 
 const port = 3000;
 const hostname = "0.0.0.0";
@@ -25,7 +24,6 @@ async function assertDatabaseConnectionOk() {
 }
 
 async function init() {
-    Configuration.init();
     await assertDatabaseConnectionOk();
     const app = express();
 

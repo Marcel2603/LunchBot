@@ -1,11 +1,12 @@
 import { Sequelize } from "sequelize";
+import { config } from "./configurationProvider";
 
 export const sequelize = new Sequelize(
-    process.env["DB_TABLE"] || "lunchbot",
-    process.env["DB_USER"] || "lunch",
-    process.env["DB_PASSWORD"] || "bot",
+    config()["database"]["table"],
+    config()["database"]["user"],
+    config()["database"]["password"],
     {
-        host: process.env["DB_HOST"] || "localhost",
+        host: config()["database"]["host"],
         dialect: "postgres",
         logging: false,
         benchmark: true,
