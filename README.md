@@ -41,6 +41,9 @@ enable the "on 'reformat code' action" option in the settings.
 
 The config file is expected to be called "configuration.yml" and lie in the root of the repo.
 
+You can use env vars to pass some values (like secrets) into the config. Use the following
+syntax `${NAME_OF_YOUR_ENV_VAR}` and the with the name of the env var specified within.
+
 ## Running the app
 
 You need a test account to use the bot in teams. See below on how to create one.

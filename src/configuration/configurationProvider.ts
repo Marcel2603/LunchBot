@@ -13,14 +13,33 @@ export default class Configuration {
     }
 
     static init(configPath?: string) {
-        const rawConfig = fs.readFileSync(
+        let configStr = fs.readFileSync(
             configPath ?? path.join(process.cwd(), "configuration.yml"),
             "utf8"
         );
         logger.debug("the raw config file has been loaded", {
-            config: rawConfig,
+            config: configStr,
         });
-        const config = yaml.load(rawConfig);
+        configStr = configStr.replace(
+            /\$\{([\w_-]+)\}/,
+            (substring, varName) => {
+                const varContent = process.env[varName];
+                if (varContent === undefined) {
+                    throw new ReferenceError(
+                        `could not find an environment variable called "${varName}"`
+                    );
+                }
+                return varContent;
+            }
+        );
+
+        const config = yaml.load(configStr);
+        this._instance = new Configuration(config);
+
+        // we don't want to print the parsed config to not leak any secrets in it
+        logger.info(
+            "the config file has been processed, the configuration is now available"
+        );
     }
 
     static getInstance() {
@@ -28,7 +47,7 @@ export default class Configuration {
             return Configuration._instance;
 
         throw new Error(
-            "The configuration instance has not yet been instanced. This is required to be able to use it."
+            "The configuration instance has not yet been instantiated. This is required to be able to use it."
         );
     }
 }
