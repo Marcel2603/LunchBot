@@ -38,7 +38,10 @@ export default class Configuration {
     }
 
     static getInstance() {
-        return Configuration._instance ?? new Configuration();
+        if (Configuration._instance === null) {
+            Configuration._instance = new Configuration();
+        }
+        return Configuration._instance;
     }
 
     static getConfig() {
