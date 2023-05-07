@@ -29,8 +29,6 @@ services:
             - "yarn start"
         env_file:
             - .env
-        environment:
-            - TEST=asdf
         ports:
             - "3000:3000"
     postgres:
