@@ -20,7 +20,7 @@ Vote.init(
         },
         foodId: {
             references: {
-                model: "food",
+                model: "Food",
                 key: "id",
             },
             type: DataTypes.INTEGER,
