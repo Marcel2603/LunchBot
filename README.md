@@ -6,7 +6,8 @@
 - [x] add formatter, automatically format on commits
 - [ ] add linter
 - [ ] make tsconfig stricter
-- [x] define models in a awy better suited to typescript
+- [ ] add exponential backoff to DB availability check
+- [x] define models in a way better suited to typescript
 - [x] use only one logger library
 - [x] Add logic create food
   - vote after creation
@@ -45,7 +46,7 @@ The config file is expected to be called "configuration.yml" and lie in the root
 You need a test account to use the bot in teams. See below on how to create one.
 
 - for viewing: `docker-compose up`
-- for developing `docker-compose run lunchbot yarn && yarn dev`
+- for developing `docker-compose run --rm lunchbot yarn dev`
 
 ## Creating a bot in Teams
 

@@ -2,19 +2,35 @@ version: "3.9"
 volumes:
     node_modules:
 services:
-    lunchbot:
+    install_node_modules:
         image: node:18
-        depends_on:
-            - postgres
         volumes:
             - .:/code
             - node_modules:/code/node_modules
         working_dir: /code
         entrypoint: "bash -c"
         command:
-            - "yarn && yarn start"
+            - "yarn"
+        environment:
+            - HUSKY=0
+    lunchbot:
+        image: node:18
+        depends_on:
+            postgres:
+                condition: service_started
+            install_node_modules:
+                condition: service_completed_successfully
+        volumes:
+            - .:/code
+            - node_modules:/code/node_modules
+        working_dir: /code
+        entrypoint: "bash -c"
+        command:
+            - "yarn start"
         env_file:
             - .env
+        environment:
+            - TEST=asdf
         ports:
             - "3000:3000"
     postgres:
@@ -22,6 +38,6 @@ services:
         ports:
             - 5432:5432
         environment:
-            - "POSTGRES_DB=${DB_TABLE}"
-            - "POSTGRES_PASSWORD=${DB_PASSWORD}"
-            - "POSTGRES_USER=${DB_USER}"
+            - POSTGRES_DB=${DB_TABLE}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_USER=${DB_USER}
