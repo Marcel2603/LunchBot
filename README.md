@@ -46,7 +46,7 @@ The config file is expected to be called "configuration.yml" and lie in the root
 You need a test account to use the bot in teams. See below on how to create one.
 
 - for viewing: `docker-compose up`
-- for developing `docker-compose run --rm lunchbot yarn dev`
+- for developing `docker-compose run --service-ports --rm lunchbot yarn dev`
 
 ## Creating a bot in Teams
 
