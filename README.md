@@ -49,7 +49,7 @@ syntax `${NAME_OF_YOUR_ENV_VAR}` and the with the name of the env var specified 
 You need a test account to use the bot in teams. See below on how to create one.
 
 - for viewing: `docker-compose up`
-- for developing `docker-compose run --service-ports --rm lunchbot yarn dev`
+- for developing `docker-compose run --service-ports --rm lunchbot "yarn dev"`
 
 ## Creating a bot in Teams
 
