@@ -6,6 +6,7 @@ import initSchedulers from "./scheduler/lunch.scheduler";
 import { testRouter } from "./router/test.router";
 import { botRouter } from "./router/bot.router";
 import { loggingTimestampFormat } from "./configuration/logger";
+import { metricsRouter } from "./router/metrics.router";
 
 const port = 3000;
 const hostname = "0.0.0.0";
@@ -44,6 +45,7 @@ async function init() {
     );
     app.use("/test", testRouter);
     app.use("/api/v1/messages", botRouter);
+    app.use("/metrics", metricsRouter);
 
     initSchedulers();
 

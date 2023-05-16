@@ -4,6 +4,11 @@ volumes:
 services:
     postgres:
         image: postgres:14-alpine
+        healthcheck:
+            test: "/usr/local/bin/pg_isready --username=${DB_USER} --dbname=${DB_TABLE}"
+            interval: 1s
+            timeout: 10s
+            retries: 120
         expose:
             - "5432"
         environment:
@@ -25,12 +30,17 @@ services:
         image: node:18
         depends_on:
             postgres:
-                condition: service_started
+                condition: service_healthy
             install_node_modules:
                 condition: service_completed_successfully
         volumes:
             - .:/code
             - node_modules:/code/node_modules
+        healthcheck:
+            test: "curl 0.0.0.0:3000/metrics"
+            interval: 5s
+            timeout: 10s
+            retries: 30
         working_dir: /code
         entrypoint: "bash -c"
         command:
