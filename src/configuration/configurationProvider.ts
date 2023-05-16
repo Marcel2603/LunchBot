@@ -2,11 +2,14 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as process from "node:process";
 import { logger } from "./logger";
-import { configurationSchema } from "./configuration.schema";
+import {
+    ConfigurationSchema,
+    configurationSchema,
+} from "./configuration.schema";
 
 export default class Configuration {
     private static _instance: Configuration | null = null;
-    private _config: configurationSchema;
+    private _config: ConfigurationSchema;
 
     private constructor(configPath?: string) {
         let configStr = fs.readFileSync(
@@ -46,12 +49,12 @@ export default class Configuration {
         return Configuration._instance;
     }
 
-    static getConfig(): configurationSchema {
+    static getConfig(): ConfigurationSchema {
         return Configuration.getInstance()._config;
     }
 }
 
 // this serves as a shorthand method to get the configuration object
-export function config() {
+export function config(): ConfigurationSchema {
     return Configuration.getConfig();
 }
