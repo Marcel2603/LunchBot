@@ -1,4 +1,5 @@
 {
+    "$schema": "./configuration-schema.json",
     "database": {
         "host": "postgres",
         "user": "${DB_USER}",
