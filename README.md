@@ -4,11 +4,13 @@
 
 - [x] Load Config from env
 - [x] add formatter, automatically format on commits
-- [ ] add linter
-- [ ] make tsconfig stricter
-- [ ] add exponential backoff to DB availability check
+- [x] add linter
+- [x] make tsconfig stricter
+- [x] ~~add exponential backoff to DB availability check~~ (no longer needed as the app now waits until the DB container
+      is healthy)
 - [x] define models in a way better suited to typescript
 - [x] use only one logger library
+- [x] add super sexy config mechanism
 - [x] Add logic create food
   - vote after creation
   - check that food does not exists, else vote
