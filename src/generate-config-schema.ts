@@ -8,6 +8,6 @@ const schemaJson = zodToJsonSchema(
 );
 
 const schemaStr = JSON.stringify(schemaJson, null, 4);
-fs.writeFileSync("./configuration-schema.json", schemaStr);
+fs.writeFileSync("./schemas/configuration-schema.json", schemaStr);
 
 console.log("Schema successfully updated.");
