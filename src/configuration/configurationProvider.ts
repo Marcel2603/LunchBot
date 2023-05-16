@@ -1,16 +1,16 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import * as process from "node:process";
-import yaml from "js-yaml";
 import { logger } from "./logger";
+import { configurationSchema } from "./configuration.schema";
 
 export default class Configuration {
     private static _instance: Configuration | null = null;
-    private _config;
+    private _config: configurationSchema;
 
     private constructor(configPath?: string) {
         let configStr = fs.readFileSync(
-            configPath ?? path.join(process.cwd(), "configuration.yml"),
+            configPath ?? path.join(process.cwd(), "configuration.json"),
             "utf8"
         );
         logger.debug("the raw config file has been loaded", {
@@ -29,7 +29,9 @@ export default class Configuration {
             }
         );
 
-        this._config = yaml.load(configStr);
+        const configObj = JSON.parse(configStr);
+        configurationSchema.parse(configObj);
+        this._config = configObj;
 
         // we don't want to print the parsed config to not leak any secrets in it
         logger.info(
@@ -44,7 +46,7 @@ export default class Configuration {
         return Configuration._instance;
     }
 
-    static getConfig() {
+    static getConfig(): configurationSchema {
         return Configuration.getInstance()._config;
     }
 }
